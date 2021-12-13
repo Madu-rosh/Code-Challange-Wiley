@@ -1,0 +1,49 @@
+version: '3.7'
+
+networks:
+  docker-php8-network:
+    driver: bridge
+
+services:
+  php:
+    build: ./docker/php
+    restart: always
+    tty: true
+    container_name: docker-php8-php
+    networks:
+      - docker-php8-network
+    ports:
+      - '9000:9000'
+    volumes:
+      - .:/home/app
+
+  #  replace apache with nginx
+  apache:
+    build: ./docker/apache
+    container_name: docker-php8-apache
+    restart: always
+    tty: true
+    depends_on:
+      - php
+    ports:
+      - "80:80"
+      - "433:433"
+    volumes:
+      - .:/home/app
+    networks:
+      - docker-php8-network
+
+  redis:
+     image: bitnami/redis:latest
+     restart: always
+     tty: true
+     container_name: docker-php8-redis
+     volumes:
+       - ./docker/redis:/bitnami/redis/data
+     networks:
+       - docker-php8-network
+     environment:
+       - ALLOW_EMPTY_PASSWORD=no
+       - REDIS_PASSWORD=root
+     ports:
+       - '6379:6379'

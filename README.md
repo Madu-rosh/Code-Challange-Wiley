@@ -2,7 +2,7 @@
 This repo is created to address a requirment for a test i had to take while in a recruitment process
 
 ### Docker Container
-Docker runing Apache PHP-FPM, Redis and MySQL
+Docker runing Apache PHP-FPM and Redis
 I checked this repo: https://github.com/evan70/docker-apache-nginx-php-mysql-redis to get docker container prepared.
 
 You just need to install the docker and docker-compose.

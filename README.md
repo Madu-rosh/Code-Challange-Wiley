@@ -10,12 +10,10 @@ You just need to install the docker and docker-compose.
 - [Install Docker] (https://docs.docker.com/install/)
 - [Install Docker Compose] (https://docs.docker.com/compose/install/)
 
-After installing, just run the terminal as root where 
+After installing, just open the terminal/powershell with proper privillages where 
 `docker-compose.yml` file is, run command.
-
-`` bash
-docker-compose build && docker-compose up -d && docker-compose logs -f
 ``
+docker-compose build && docker-compose up -d && docker-compose logs -f``
 
 ** - d ** means that it will run in the background and your terminal will not be locked and to kill the process just press `CTRL + C` on windows or` Command + C` on mac.
 
@@ -24,8 +22,7 @@ docker-compose build && docker-compose up -d && docker-compose logs -f
 I noticed you may need to edit redis server configurations inside index.php and request.php to avoid any fatal errorss. this ip get changed once you build it.
 to find the IP related to redis use this command once docker up and running
 
-
-`` bash
+``
 docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' docker-php8-redis
 ``
 
